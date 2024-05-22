@@ -13,13 +13,14 @@
 - name: "install :: adds the official Google key"
   become: true
   ansible.builtin.apt_key:
-    url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+    url: "https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key"
     state: present
+    keyring: /etc/apt/sources.list.d/kubernetes.list
 
 - name: "install :: adds the official Kubernetes repository"
   become: true
   ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64] https://apt.kubernetes.io/ kubernetes-xenial main"
+    repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /"
     state: present
 
 - name: "install :: updates package lists"
