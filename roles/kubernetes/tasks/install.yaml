@@ -15,7 +15,7 @@
   ansible.builtin.apt_key:
     url: "https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key"
     state: present
-    keyring: /etc/apt/sources.list.d/kubernetes.list
+    keyring: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 - name: "install :: adds the official Kubernetes repository"
   become: true
