@@ -2,7 +2,7 @@
   become: true
   ansible.builtin.shell: |
     kubeadm init --pod-network-cidr={{ kubernetes.CIDR }} \
-                 --apiserver-advertise-address {{ ansible_default_ipv4.address }} --ignore-preflight-errors=NumCPU
+                 --apiserver-advertise-address {{ hostvars['master']['ansible_host'] }} --ignore-preflight-errors=NumCPU
   register: init
 
 - name: "config :: creates the root directory"
